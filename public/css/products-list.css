@@ -1,0 +1,286 @@
+.material-icons {
+    font-size: 1.3em;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0 solid white;
+}
+
+.body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    line-height: 1.3;
+    width: 1000px;
+    margin: 0 auto;
+    border: 1px solid grey;
+}
+
+
+/*# Header -->*/
+.header {
+    text-align: center;
+    font-size: 1em;
+    border-bottom: 1px solid grey;
+}
+
+.img-logo {
+    height: 200px;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: grey;
+}
+
+.breadcrumbs-list-item {
+    text-align: center;
+    padding: .7em;
+}
+
+.breadcrumbs-text {
+    font-size: .9em;
+    color: black;
+    text-decoration: none;
+}
+
+.breadcrumbs-text-active {
+    font-size: .9em;
+    font-weight: bold;
+    color: blueviolet;
+    text-decoration: none;
+}
+
+/*# /Header -->*/
+
+
+/*# Navigation -->*/
+.nav-container {
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.nav-text {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-list-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-list-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-list-item {
+    text-align: center;
+    padding: 1.5em;
+}
+
+/*# /Navigation -->*/
+
+
+/*Body*/
+.content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.left-panel {
+    grid-column: 1 / 2;
+    background-color: blueviolet;
+    font-weight: bold;
+    color: white;
+}
+
+.panel-title {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-item {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-link {
+    color: white;
+    text-decoration: none;
+}
+/*/Body*/
+
+
+/*# Tiles -->*/
+.products-table-container {
+    margin: 3em 0;
+    grid-column: 2 / 3;
+}
+
+.tiles-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    height: 15em;
+    width: 20em;
+    padding-left: 1em;
+    padding-top: 1em;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 25% 75%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tiles-img {
+    display: grid;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-content: center;
+    margin: .8em;
+    height: 125px;
+    width: 125px;
+}
+
+.card-button {
+    font-size: 1em;
+    color: white;
+    padding: .2em .5em;
+    background-color: grey;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+/*.card-title {*/
+/*    grid-column: 1 / span 2;*/
+/*    grid-row: 1 / 2;*/
+/*    padding: 3% 0 0 3%;*/
+/*    font-size: 1.5em;*/
+/*    font-weight: bold;*/
+/*    border-bottom: 1px solid grey;*/
+/*}*/
+
+.card-header {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+    padding: 3% 0 0 3%;
+    border-bottom: 1px solid grey;
+    display: inline-grid;
+}
+
+.card-title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+}
+
+.card-icons {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: start;
+    padding-right: 1.5em;
+}
+
+.card-icon {
+    color: grey;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.card-text-container {
+    display: inline-grid;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-content: center;
+    align-items: baseline;
+    padding: 2px 8px;
+}
+
+.card-text {
+    word-wrap: break-word;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-text-red {
+    font-size: 1em;
+    font-weight: bold;
+    color: red;
+}
+
+.tiles-item {
+    display: inline-block;
+    margin: 2em;
+}
+
+/*# /Tiles -->*/
+
+
+/*# Pagination -->*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 3em;
+}
+
+.pagination-item {
+    color: black;
+    text-decoration: none;
+    padding: .5em 1em;
+    font-size: 1em;
+}
+
+.pagination-active-item {
+    background-color: #ccc;
+    color: black;
+    padding: .5em 1em;
+    font-size: 1em;
+}
+
+.pagination-item:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+/*# /Pagination -->*/
+
+
+/*# Footer -->*/
+.footer {
+    width: 1000px;
+    font-size: .8em;
+}
+
+.footer-border {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid grey;
+    padding: 1em;
+}
+
+p {
+    padding: .5em;
+}
+
+/*# /Footer -->*/

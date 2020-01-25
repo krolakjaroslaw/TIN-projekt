@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- import font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- import styles -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/cart-list.css">
+    <title>Lokalne przysmaki</title>
+</head>
+<body class="body">
+
+
+<!-- Navigation -->
+<div class="nav-container">
+    <ul class="nav-list-start">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/" class="nav-text">Str. główna</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/products" class="nav-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Kontakt</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Zaloguj</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="nav-list-end">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <button class="material-icons">account_box</button>
+                <a class="nav-text">Admin</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">
+                    <button class="material-icons" onclick="location.href='/cart/showAddForm'">shopping_cart</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- /Navigation -->
+
+
+<!-- Header -->
+<header class="header">
+    <img class="img-logo" src="../images/logo.jpg" alt="logo"/>
+    <ul class="nav-list-start">
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/" class="breadcrumbs-text">Home</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text-active">Zamówienia</a>
+            </div>
+        </li>
+    </ul>
+</header>
+<!-- /Header -->
+
+
+<!--Body-->
+
+<div class="content">
+
+    <!--Left Panel-->
+    <div class="left-panel">
+        <div class="panel-title">
+            <button class="material-icons" style="color: white">account_box</button>
+            <span>Admin</span>
+        </div>
+        <ul class="panel-menu">
+            <li class="panel-menu-item">
+                <a href="/products" class="panel-menu-link">Pokaż produkty</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/products/showAddForm" class="panel-menu-link">Dodaj produkt</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/cart/showAddForm" class="panel-menu-link">Dodaj zamówienie</a>
+            </li>
+        </ul>
+    </div>
+    <!--/Left Panel-->
+
+
+    <!-- ProductsTable -->
+
+    <div class="products-table-container">
+        <table class="products-table">
+            <tr>
+                <th>Zamówienie</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>E-mail</th>
+                <th>Dostawa</th>
+                <th>Edycja</th>
+                <th>Usuń</th>
+            </tr>
+
+            <% orderList.forEach(function(order){ %>
+            <tr>
+                <td><a href="/cart/showDetails?order_id=<%= order.id %>">Zamówienie <%= order.id %></a></td>
+                <td><%= order.first_name %></td>
+                <td><%= order.last_name %></td>
+                <td><%= order.email %></td>
+                <% if (order.delivery === 1) { %>
+                <td><input type="checkbox" checked disabled="disabled"/></td>
+                <% } else { %>
+                <td><input type="checkbox" disabled="disabled"/></td>
+                <% } %>
+                <td>
+                    <button class="material-icons" onclick="location.href='/cart/showEditForm?order_id=<%= order.id %>'">edit</button>
+                </td>
+                <td>
+                    <button class="material-icons" id="deleteBtn" onclick="location.href='/orders/delete?order_id=<%= order.id %>'">delete</button>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Czy na pewno usunąć zamówienie?</p>
+                <div class="buttons">
+                    <button class="form-submit-button" id="noBtn">NIE</button>
+                    <button class="form-submit-button" id="yesBtn">TAK</button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- /ProductsTable -->
+
+
+</div>
+<!--/Body-->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="footer-border">Wszystkie prawa zastrzeżone © 2019 Lokalne Przysmaki Sp. z o.o.</p>
+</footer>
+<!-- /Footer -->
+
+<!-- <script> -->
+<!--     let modal = document.getElementById("myModal"); -->
+<!--     let deleteBtn = document.getElementById("deleteBtn"); -->
+<!--     let span = document.getElementsByClassName("close")[0]; -->
+<!--     let yesBtn = document.getElementById("yesBtn"); -->
+<!--     let noBtn = document.getElementById("noBtn"); -->
+
+<!--     deleteBtn.onclick = function () { -->
+<!--         modal.style.display = "block"; -->
+<!--     }; -->
+
+<!--     span.onclick = function () { -->
+<!--         modal.style.display = "none"; -->
+<!--     }; -->
+
+<!--     yesBtn.onclick = function () { -->
+<!--         modal.style.display = "none"; -->
+<!--     }; -->
+
+<!--     noBtn.onclick = function () { -->
+<!--         modal.style.display = "none"; -->
+<!--     }; -->
+
+<!--     window.onclick = function (event) { -->
+<!--         if (event.target === modal) { -->
+<!--             modal.style.display = "none"; -->
+<!--         } -->
+<!--     } -->
+<!-- </script> -->
+
+</body>
+</html>

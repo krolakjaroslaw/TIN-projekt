@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><%= pageTitle %></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- import font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- import styles -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/cart-add-form.css">
+</head>
+<body class="body">
+
+
+<!-- Navigation -->
+<div class="nav-container">
+    <ul class="nav-list-start">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/" class="nav-text">Str. główna</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/products" class="nav-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Kontakt</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Zaloguj</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="nav-list-end">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <button class="material-icons">account_box</button>
+                <a class="nav-text">Gość</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">
+                    <button class="material-icons" onclick="location.href='/cart/showAddForm'">shopping_cart</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- /Navigation -->
+
+
+<!-- Header -->
+<header class="header">
+    <img class="img-logo" src="../images/logo.jpg" alt="logo"/>
+    <ul class="nav-list-start">
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/" class="breadcrumbs-text">Home</a>
+            </div>
+        </li>
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/orders" class="breadcrumbs-text">Zamówienia</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text-active"><%= formAction === 'add' ? 'Dodaj' : 'Edytuj' %></a>
+            </div>
+        </li>
+    </ul>
+</header>
+<!-- /Header -->
+
+
+<!-- Form -->
+<div class="form-register">
+    <form class="form-columns" method="post" onsubmit="return validateForm();" action="/cart/<%= formAction %>">
+        <ul class="form-wrapper">
+            <li class="form-row">
+                <input type="hidden" class="form-input" id="order_id" name="order_id" value="<%= order.id %>"/>
+            </li>
+
+            <li class="form-row">
+                <label class="label" for="first_name">Imię:</label>
+                <input class="form-input" id="first_name" type="text" name="first_name"
+                       value="<%= order.first_name %>"/>
+                <p class="asterix text-red">*</p>
+            </li>
+
+            <li>
+                <div id="first-name-error" class="error"><%= messages.errorFirstName %></div>
+            </li>
+
+            <li class="form-row">
+                <label class="label" for="last_name">Nazwisko:</label>
+                <input class="form-input" id="last_name" type="text" name="last_name" value="<%= order.last_name %>"/>
+                <p class="asterix text-red">*</p>
+            </li>
+
+            <li>
+                <div id="last-name-error" class="error"><%= messages.errorLastName %></div>
+            </li>
+
+            <li class="form-row">
+                <label class="label" for="email">E-mail:</label>
+                <input class="form-input" id="email" type="text" name="email" value="<%= order.email %>"/>
+                <p class="asterix text-red">*</p>
+            </li>
+
+            <li>
+                <div id="email-error" class="error"><%= messages.errorEmail %></div>
+            </li>
+
+            <li class="form-row">
+                <label class="label" for="delivery">Z dostawą:</label>
+                <% if (order.delivery === 1) { %>
+                    <input class="checkbox" id="delivery" type="checkbox" name="delivery" checked/>
+                <% } else { %>
+                    <input class="checkbox" id="delivery" type="checkbox" name="delivery"/>
+                <% } %>
+            </li>
+
+            <li class="form-row">
+                <label class="label" for="address">Adres dostawy:</label>
+                <textarea class="textarea" id="address" name="address"><%= order.address %></textarea>
+            </li>
+
+            <li>
+                <div id="address-error" class="error"><%= messages.errorAddress %></div>
+            </li>
+
+            <li class="form-row">
+                <label class="label label-small text-red" for="submit">* pola wymagane</label>
+            </li>
+        </ul>
+
+        <ul class="form-wrapper">
+            <li class="form-row list-right">
+                <label class="label-center">Produkty:</label>
+            </li>
+
+            <% if (productList.length) { %>
+                <% productList.forEach(function(product) { %>
+                    <li class="tiles-item list-right">
+                        <div class="card">
+                            <div class="card-header">
+                                <input type="hidden" name="cart_id" value="<%= product.id %>"/>
+                                <input type="hidden" name="product_id" value="<%= product.product_id %>"/>
+                                <p class="card-title"><%= product.product_name %></p>
+                                <div class="card-icons">
+                                    <input class="quantity-input card-icon" type="number" name="quantity" step="1" min="0" placeholder="1" value="<%= product.quantity ? product.quantity : 1 %>"/>
+                                </div>
+                            </div>
+                            <div class="card-text-container">
+                                <p class="card-text">Jednostka: <%= product.unit %></p>
+                                <p class="card-text card-text-bold">Cena: <%= product.price %>zł</p>
+                            </div>
+                        </div>
+                    </li>
+                <% }) %>
+            <% } else { %>
+                <li class="tiles-item list-right">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="card-title">Koszyk jest pusty</p>
+                        </div>
+                    </div>
+                </li>
+            <% } %>
+
+            <li class="tiles-item list-right">
+                <div id="products-error" class="error"><%= messages.errorProducts %></div>
+            </li>
+
+            <li class="form-row list-right-submit">
+                <input class="form-submit-button" id="cancel" type="button" value="Anuluj"
+                       onclick="location.href='/orders'"/>
+                <input class="form-submit-button" id="submit" type="submit"
+                       value="<%= formAction === 'add' ? ' Zamów' : 'Zapisz' %>"/>
+            </li>
+
+            <li>
+                <div id="error-summary" class="error-summary"></div>
+            </li>
+        </ul>
+    </form>
+</div>
+<!-- /Form -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="footer-border">Wszystkie prawa zastrzeżone © 2019 Lokalne Przysmaki Sp. z o.o.</p>
+</footer>
+<!-- /Footer -->
+
+<script src="../js/cart-add-form-validate.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+.material-icons {
+    font-size: 1.3em;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0 solid white;
+}
+
+.body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    line-height: 1.3;
+    width: 1000px;
+    margin: 0 auto;
+    border: 1px solid grey;
+}
+
+
+/*# Header -->*/
+.header {
+    text-align: center;
+    font-size: 1em;
+    border-bottom: 1px solid grey;
+}
+
+.img-logo {
+    height: 200px;
+}
+
+.breadcrumbs-list-item {
+    text-align: center;
+    padding: .7em;
+}
+
+.breadcrumbs-text {
+    font-size: .9em;
+    color: black;
+    text-decoration: none;
+}
+
+.breadcrumbs-text-active {
+    font-size: .9em;
+    font-weight: bold;
+    color: blueviolet;
+    text-decoration: none;
+}
+/*# /Header -->*/
+
+
+/*# Navigation -->*/
+.nav-container {
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.nav-text {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-list-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-list-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-list-item {
+    text-align: center;
+    padding: 1.5em;
+}
+/*# /Navigation -->*/
+
+
+/*Body*/
+.content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.left-panel {
+    grid-column: 1 / 2;
+    background-color: blueviolet;
+    font-weight: bold;
+    color: white;
+}
+
+.panel-title {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-item {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-link {
+    text-decoration: none;
+    color: white;
+}
+/*/Body*/
+
+
+/*# Form -->*/
+.form-add-product {
+    display: flex;
+    justify-content: center;
+    font-size: 1em;
+    margin: 5em 0;
+}
+
+.form-columns {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.form-wrapper {
+    list-style-type: none;
+    padding: 0;
+    background-color: white;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 40% 55% 5%;
+    justify-content: start;
+    padding: .5em;
+}
+
+.form-input {
+    grid-column: 2 / 3;
+    padding: .5em;
+    width: 10em;
+    height: 1em;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.textarea {
+    padding: .5em;
+    width: 15em;
+    margin-top: 1em;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.label {
+    grid-column: 1 / 2;
+    padding: .5em 0;
+    width: 9em;
+}
+
+.label-small {
+    padding: .5em 0;
+    font-size: .7em;
+}
+
+.form-submit-button {
+    background-color: #919191;
+    color: white;
+    border-radius: 3px;
+    padding: .5em;
+}
+
+.list-right {
+    display: flex;
+    justify-content: center;
+}
+
+.list-right-submit {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text-red {
+    color: red;
+}
+
+.asterix {
+    grid-column: 3 / 4;
+    padding-left: 1em;
+}
+/*# /Form -->*/
+
+
+/*# Error*/
+.error {
+    font-size: .7em;
+    color: #cc1122;
+    text-align: right;
+    margin-right: 1.5em;
+}
+
+.error-summary {
+    font-size: .7em;
+    color: #cc1122;
+    text-align: left;
+    margin-top: 1em;
+    margin-left: 2.5em;
+}
+/*# /Error*/
+
+/*# Footer -->*/
+.footer {
+    width: 1000px;
+    font-size: .8em;
+}
+
+.footer-border {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid grey;
+    padding: 1em;
+}
+
+p {
+    padding: .5em;
+}
+/*# /Footer -->*/

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><%= pageTitle %></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- import font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- import styles -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/cart-show.css">
+</head>
+<body class="body">
+
+
+<!-- Navigation -->
+<div class="nav-container">
+    <ul class="nav-list-start">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/" class="nav-text">Str. główna</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/products" class="nav-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Kontakt</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Zaloguj</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="nav-list-end">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <button class="material-icons">account_box</button>
+                <a class="nav-text">Admin</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">
+                    <button class="material-icons" onclick="location.href='/cart/showAddForm'">shopping_cart</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- /Navigation -->
+
+
+<!-- Header -->
+<header class="header">
+    <img class="img-logo" src="../images/logo.jpg" alt="logo"/>
+    <ul class="nav-list-start">
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/" class="breadcrumbs-text">Home</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/orders" class="breadcrumbs-text">Zamówienia</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text-active"><%= pageTitle %></a>
+            </div>
+        </li>
+    </ul>
+</header>
+<!-- /Header -->
+
+
+<!--Body-->
+
+<div class="content">
+
+    <!--Left Panel-->
+    <div class="left-panel">
+        <div class="panel-title">
+            <button class="material-icons" style="color: white">account_box</button>
+            <span>Admin</span>
+        </div>
+        <ul class="panel-menu">
+            <li class="panel-menu-item">
+                <a href="/products" class="panel-menu-link">Pokaż produkty</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/products/showAddForm" class="panel-menu-link">Dodaj produkt</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/orders" class="panel-menu-link">Pokaż zamówienia</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/cart/showAddForm" class="panel-menu-link">Dodaj zamówienie</a>
+            </li>
+        </ul>
+    </div>
+    <!--/Left Panel-->
+
+    <!-- Form -->
+    <div class="form-register">
+        <form class="form-columns">
+            <ul class="form-wrapper">
+                <li class="form-row">
+                    <label class="label" for="first_name">Imię:</label>
+                    <label class="form-input" id="first_name"><%= order.first_name %></label>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="last_name">Nazwisko:</label>
+                    <label class="form-input" id="last_name"><%= order.last_name %></label>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="email">E-mail:</label>
+                    <label class="form-input" id="email"><%= order.email %></label>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="delivery">Z dostawą:</label>
+                    <% if (order.delivery === 1) { %>
+                        <input class="checkbox" id="delivery" type="checkbox" name="delivery" checked/>
+                    <% } else { %>
+                        <input class="checkbox" id="delivery" type="checkbox" name="delivery"/>
+                    <% } %>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="address">Adres dostawy:</label>
+                    <label class="textarea" id="address"><%= order.address %></label>
+                </li>
+            </ul>
+
+            <ul class="form-wrapper">
+                <li class="form-row list-right">
+                    <label class="label-center">Produkty:</label>
+                </li>
+
+                <% productList.forEach(function(product) { %>
+                    <li class="tiles-item list-right">
+                        <div class="card">
+                            <div class="card-header">
+                                <p class="card-title"><%= product.product_name %></p>
+                                <p class="card-quantity">x<%= product.quantity %></p>
+                            </div>
+                            <div class="card-text-container">
+                                <p class="card-text">Jednostka: <%= product.unit %></p>
+                                <p class="card-text card-text-bold">Cena: <%= product.price %>zł</p>
+                            </div>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+        </form>
+    </div>
+    <!-- /Form -->
+
+
+</div>
+<!--/Body-->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="footer-border">Wszystkie prawa zastrzeżone © 2019 Lokalne Przysmaki Sp. z o.o.</p>
+</footer>
+<!-- /Footer -->
+
+
+</body>
+</html>

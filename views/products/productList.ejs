@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <% if (home) { %>
+    <title>Strona główna</title>
+    <% } else { %>
+    <title>Lista produktów</title>
+    <% } %>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- import font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- import styles -->
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/reset.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/products-list.css'>
+</head>
+
+<body class="body">
+
+
+<!-- Navigation -->
+<div class="nav-container">
+    <ul class="nav-list-start">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/" class="nav-text">Str. główna</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/products" class="nav-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Kontakt</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Zaloguj</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="nav-list-end">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <button class="material-icons">account_box</button>
+                <a class="nav-text"><%= home ? 'Gość' : 'Admin' %></a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">
+                    <button class="material-icons" onclick="location.href='/cart/showAddForm'">shopping_cart</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- /Navigation -->
+
+
+<!-- Header -->
+<header class="header">
+    <img class="img-logo" src="../images/logo.jpg" alt="logo"/>
+    <ul class="nav-list-start">
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <% if (home) { %>
+                <a href="/" class="breadcrumbs-text-active">Home</a>
+                <% } else { %>
+                <a href="/" class="breadcrumbs-text">Home</a>
+                <% } %>
+            </div>
+        </li>
+        <% if ( !home ) { %>
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text-active">Produkty</a>
+            </div>
+        </li>
+        <% } %>
+    </ul>
+</header>
+<!-- /Header -->
+
+
+<!--Body-->
+<% if ( !home ) { %>
+<div class="content">
+
+    <!--Left Panel-->
+    <div class="left-panel">
+        <div class="panel-title">
+            <button class="material-icons" style="color: white">account_box</button>
+            <span>Admin</span>
+        </div>
+        <ul class="panel-menu">
+            <li class="panel-menu-item">
+                <a href="/products/showAddForm" class="panel-menu-link">Dodaj produkt</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/orders" class="panel-menu-link">Pokaż zamówienia</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/cart/showAddForm" class="panel-menu-link">Dodaj zamówienie</a>
+            </li>
+        </ul>
+    </div>
+    <% } %>
+    <!--/Left Panel-->
+
+
+    <!-- ProductsTiles -->
+    <div class="products-tiles-container">
+        <div class="tiles">
+            <ul class="tiles-list">
+
+                <% productList.forEach(function(product){ %>
+                <li class="tiles-item">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="card-title"><%= product.product_name %></p>
+                            <% if ( !home ) { %>
+                            <div class="card-icons">
+                                <button class="material-icons card-icon" onclick="location.href='/products/showEditForm?product_id=<%= product.product_id %>'">edit</button>
+                                <button class="material-icons card-icon" onclick="location.href='/products/delete?product_id=<%= product.product_id %>'">delete</button>
+                            </div>
+                            <% } %>
+                        </div>
+                        <img class="tiles-img" src="/products/showDetails?product_id=<%= product.product_id %>/<%= product.image %>" alt="Product Avatar">
+                        <div class="card-text-container">
+                            <p class="card-text">Jednostka: <%= product.unit%></p>
+                            <p class="card-text">Ilość: <%= product.quantity_to_sale%></p>
+                            <p class="card-text card-text-red">Cena: <%= product.price%>zł</p>
+                            <button class="card-button" onclick="location.href='/products/showDetails?product_id=<%= product.product_id %>'">Szczegóły</button>
+                        </div>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+    <!-- /ProductsTiles -->
+
+
+    <% if ( !home ) { %>
+</div>
+<% } %>
+<!--/Body-->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="footer-border">Wszystkie prawa zastrzeżone © 2019 Lokalne Przysmaki Sp. z o.o.</p>
+</footer>
+<!-- /Footer -->
+
+
+</body>
+
+</html>

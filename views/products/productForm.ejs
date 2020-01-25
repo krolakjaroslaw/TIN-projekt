@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><%= pageTitle %></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- import font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- import styles -->
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/reset.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/product-add-form.css'>
+</head>
+
+<body class="body">
+
+
+<!-- Navigation -->
+<div class="nav-container">
+    <ul class="nav-list-start">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/" class="nav-text">Str. główna</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a href="/products" class="nav-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Kontakt</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">Zaloguj</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="nav-list-end">
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <button class="material-icons">account_box</button>
+                <a class="nav-text">Admin</a>
+            </div>
+        </li>
+
+        <li class="nav-list-item">
+            <div class="nav-container">
+                <a class="nav-text">
+                    <button class="material-icons" onclick="location.href='/cart/showAddForm'">shopping_cart</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- /Navigation -->
+
+
+<!-- Header -->
+<header class="header">
+    <img class="img-logo" src="../images/logo.jpg" alt="logo"/>
+    <ul class="nav-list-start">
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/" class="breadcrumbs-text">Home</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a href="/products" class="breadcrumbs-text">Produkty</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text">/</a>
+            </div>
+        </li>
+
+        <li class="breadcrumbs-list-item">
+            <div class="nav-container">
+                <a class="breadcrumbs-text-active"><%= formAction === 'add' ? 'Dodaj' : 'Edytuj'%></a>
+            </div>
+        </li>
+    </ul>
+</header>
+<!-- /Header -->
+
+
+<!--Body-->
+
+<div class="content">
+
+    <!--Left Panel-->
+    <div class="left-panel">
+        <div class="panel-title">
+            <button class="material-icons" style="color: white">account_box</button>
+            <span>Admin</span>
+        </div>
+        <ul class="panel-menu">
+            <li class="panel-menu-item">
+                <a href="/products" class="panel-menu-link">Pokaż produkty</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/orders" class="panel-menu-link">Pokaż zamówienia</a>
+            </li>
+
+            <li class="panel-menu-item">
+                <a href="/cart/showAddForm" class="panel-menu-link">Dodaj zamówienie</a>
+            </li>
+        </ul>
+    </div>
+    <!--/Left Panel-->
+
+
+    <!-- Form -->
+    <div class="form-add-product">
+        <form class="form-columns" id="add-product-form" method="post" onsubmit="return validateForm();" action="/products/<%= formAction %>">
+            <ul class="form-wrapper">
+                <li class="form-row">
+                    <input type="hidden" class="form-input" id="product_id" name="product_id" value="<%= product.product_id %>"/>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="name">Nazwa:</label>
+                    <input class="form-input" id="name" type="text" name="name" value="<%= product.product_name %>"/>
+                    <p class="asterix text-red">*</p>
+                </li>
+
+                <li>
+                    <div id="name-error" class="error"><%= messages.errorName %></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="quantity">Jednostka:</label>
+                    <input class="form-input" id="unit" type="text" name="unit" value="<%= product.unit %>"/>
+                    <p class="asterix text-red">*</p>
+                </li>
+
+                <li>
+                    <div id="unit-error" class="error"><%= messages.errorUnit %></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="quantity">Ilość:</label>
+                    <input class="form-input" id="quantity" type="number" step="1" min="1" name="quantity_to_sale" value="<%= product.quantity_to_sale %>"/>
+                    <p class="asterix text-red">*</p>
+                </li>
+
+                <li>
+                    <div id="quantity-error" class="error"><%= messages.errorQuantity %></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="price">Cena:</label>
+                    <input class="form-input" id="price" type="number" step="0.01" min="0" name="price" value="<%= product.price %>"/>
+                    <p class="asterix text-red">*</p>
+                </li>
+
+                <li>
+                    <div id="price-error" class="error"><%= messages.errorPrice %></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="expiration_date">Data przyd.:</label>
+                    <input class="form-input" id="expiration_date" type="date" name="expiration_date" value="<%= product.exp_date %>"/>
+                    <p class="asterix text-red">*</p>
+                </li>
+
+                <li>
+                    <div id="expiration-date-error" class="error"><%= messages.errorDate %></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label" for="photo">Zdjęcie:</label>
+                    <input class="form-input" id="photo" type="file" name="image" value="<%= product.image %>"/>
+                </li>
+
+                <li>
+                    <div id="photo-error" class="error"></div>
+                </li>
+
+                <li class="form-row">
+                    <label class="label label-small text-red" for="submit">* pola wymagane</label>
+                </li>
+            </ul>
+
+            <ul class="form-wrapper">
+                <li class="form-row list-right">
+                    <label class="label-center">Krótki opis:</label>
+                </li>
+
+                <li class="form-row list-right">
+                    <label>
+                        <textarea class="textarea" id="description" rows="9" name="description"><%= product.description %></textarea>
+                    </label>
+                </li>
+
+                <li>
+                    <div id="description-error" class="error" style="text-align: center"></div>
+                </li>
+
+                <li class="form-row list-right-submit">
+                    <input class="form-submit-button" id="cancel" type="button" value="Anuluj" onclick="location.href='/products'">
+                    <input class="form-submit-button" id="submit" type="submit" value="<%= formAction === 'add' ? 'Dodaj' : 'Zapisz'%>">
+                </li>
+
+                <li>
+                    <div id="error-summary" class="error-summary"></div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- /Form -->
+
+
+</div>
+<!--/Body-->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p class="footer-border">Wszystkie prawa zastrzeżone © 2019 Lokalne Przysmaki Sp. z o.o.</p>
+</footer>
+<!-- /Footer -->
+
+<script src="../js/product-add-form-validate.js"></script>
+</body>
+
+</html>

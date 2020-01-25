@@ -1,0 +1,215 @@
+.material-icons {
+    font-size: 1.3em;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0 solid white;
+}
+
+.body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    line-height: 1.3;
+    width: 1000px;
+    margin: 0 auto;
+    border: 1px solid grey;
+}
+
+
+/*# Header -->*/
+.header {
+    text-align: center;
+    font-size: 1em;
+    border-bottom: 1px solid grey;
+}
+
+.img-logo {
+    height: 200px;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: grey;
+}
+
+.breadcrumbs-list-item {
+    text-align: center;
+    padding: .7em;
+}
+
+.breadcrumbs-text {
+    font-size: .9em;
+    color: black;
+    text-decoration: none;
+}
+
+.breadcrumbs-text-active {
+    font-size: .9em;
+    font-weight: bold;
+    color: blueviolet;
+    text-decoration: none;
+}
+/*# /Header -->*/
+
+
+/*# Navigation -->*/
+.nav-container {
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.nav-text {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-list-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-list-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-list-item {
+    text-align: center;
+    padding: 1.5em;
+}
+/*# /Navigation -->*/
+
+
+/*Body*/
+.content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.left-panel {
+    grid-column: 1 / 2;
+    background-color: blueviolet;
+    font-weight: bold;
+    color: white;
+}
+
+.panel-title {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-item {
+    border-bottom: 1px solid darkgrey;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-menu-link {
+    color: white;
+    text-decoration: none;
+}
+/*/Body*/
+
+
+/*# ProductTiles -->*/
+.product-tile-container {
+    margin: 3em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    height: 25em;
+    width: 40em;
+    padding-left: 1em;
+    padding-top: 1em;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 20% 80%;
+}
+
+.tiles-img {
+    margin: 2em;
+    height: 200px;
+    width: 200px;
+}
+
+.card-title {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+    padding: 3% 0 0 3%;
+    font-size: 2em;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
+
+.card-img-container {
+    display: flex;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2px 2px;
+}
+
+.card-text-container {
+    display: inline-grid;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-content: center;
+    align-items: stretch;
+    padding: 2px 2px;
+}
+
+.card-text {
+    word-wrap: break-word;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.card-text-red {
+    font-size: 1em;
+    font-weight: bold;
+    color: red;
+}
+
+.submit-button {
+    background-color: #919191;
+    color: white;
+    border-radius: 3px;
+    padding: .5em;
+    width: 150px;
+    height: 40px;
+}
+
+/*# /ProductTile -->*/
+
+
+/*# Footer -->*/
+.footer {
+    width: 1000px;
+    font-size: .8em;
+}
+
+.footer-border {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid grey;
+}
+
+p {
+    padding: 1em;
+}
+
+/*# /Footer -->*/
