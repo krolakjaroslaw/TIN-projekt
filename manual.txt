@@ -1,0 +1,9 @@
+Aby uruchomić projekt, należy:
+ - nadpisać plik konfiguracyjny bazy danych "db/mysql.js" własnymi danymi
+ - zainstalować wymagane biblioteki (już zdefiniowane w package.json) poleceniem (z katalogu projektu):
+    npm install
+
+Polecenie uruchamiające aplikację:
+    node app.js
+lub 
+    nodemon app.js
